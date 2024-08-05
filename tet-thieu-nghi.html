@@ -1,0 +1,212 @@
+-<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Tết Thiếu Nhi</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ff4d4d; /* Nền đỏ */
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        h1, p {
+            margin: 0;
+            padding: 10px;
+            color: #fff; /* Màu chữ trắng */
+            opacity: 0; /* Ban đầu ẩn chữ */
+            animation: slideIn 2s ease-out forwards, fadeIn 2s ease-out forwards;
+        }
+
+        h1 {
+            font-size: 4em;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            animation-delay: 0s; /* Hiệu ứng chữ chính */
+        }
+
+        p {
+            font-size: 1.8em;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            animation-delay: 2s; /* Hiệu ứng chữ phụ */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Pháo hoa */
+        .firework {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Bóng bay */
+        .balloon {
+            position: absolute;
+            width: 100px;
+            height: 130px;
+            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 100%);
+            border-radius: 50% 50% 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            animation: float 7s ease-in-out;
+            z-index: 1;
+            opacity: 0; /* Ẩn bóng bay mặc định */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-130vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Lồng đèn */
+        .lantern {
+            position: absolute;
+            width: 100px;
+            height: 130px;
+            background: radial-gradient(circle, #ff5722 0%, #ff9800 100%);
+            border-radius: 30px 30px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            animation: float 7s ease-in-out;
+            z-index: 1;
+            opacity: 0; /* Ẩn lồng đèn mặc định */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc Mừng Tết Thiếu Nhi!</h1>
+        <p>Chúc các em có một mùa Tết vui vẻ và đầy hạnh phúc!</p>
+    </div>
+
+    <script>
+        function randomColor() {
+            const colors = [
+                '255,0,0',    // Đỏ
+                '0,255,0',    // Xanh lá
+                '0,0,255',    // Xanh dương
+                '255,255,0',  // Vàng
+                '255,165,0',  // Cam
+                '128,0,128',  // Tím
+                '255,192,203' // Hồng
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            const color = randomColor();
+            firework.style.background = `radial-gradient(circle, rgba(${color}, 0.6) 0%, rgba(0, 0, 0, 0) 70%)`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.width = `${Math.random() * 30 + 30}px`;
+            firework.style.height = firework.style.width;
+            document.body.appendChild(firework);
+            
+            setTimeout(() => {
+                firework.remove();
+            }, 1000); // Thời gian animation giảm
+        }
+
+        document.body.addEventListener('click', function() {
+            // Phát âm thanh
+            const audio = new Audio('firework-sound.mp3');
+            audio.play();
+            
+            // Tạo nhiều pháo hoa
+            for (let i = 0; i < 10; i++) {
+                createFirework();
+            }
+
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.top = `${Math.random() * 100}vh`;
+            balloon.style.left = `${Math.random() * 100}vw`;
+            document.body.appendChild(balloon);
+
+            // Tạo lồng đèn
+            const lantern = document.createElement('div');
+            lantern.className = 'lantern';
+            lantern.style.top = `${Math.random() * 100}vh`;
+            lantern.style.left = `${Math.random() * 100}vw`;
+            document.body.appendChild(lantern);
+
+            // Xóa các phần tử khi chúng hoàn thành animation
+            setTimeout(() => {
+                balloon.remove();
+                lantern.remove();
+            }, 7000); // Thời gian này nên bằng thời gian của animation
+        });
+    </script>
+</body>
+</html>
